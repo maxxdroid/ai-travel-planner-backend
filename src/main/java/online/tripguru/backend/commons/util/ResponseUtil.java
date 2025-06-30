@@ -18,6 +18,10 @@ public class ResponseUtil {
                 .build());
     }
 
+    public static ResponseEntity<Response<?>> success(Response<?> response) {
+        return ResponseEntity.ok(response);
+    }
+
     public static ResponseEntity<Response<?>> success() {
         return ResponseEntity.ok(Response.builder()
                 .status(HttpStatus.OK.value())
