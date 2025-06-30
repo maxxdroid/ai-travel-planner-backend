@@ -17,10 +17,7 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-@AllArgsConstructor
 public class TripServiceImpl implements TripService{
-
-//    private final ResponseUtil responseUtil;
 
     @Value("${openai.api.key}")
     private String openAiApiKey;
@@ -57,7 +54,13 @@ public class TripServiceImpl implements TripService{
                         return message.get("content").toString();
                     });
 
-            return ResponseUtil.success();
+            Response<?> userResponse = Response.builder()
+                    .status(200)
+                    .message("Trip plan fetched successfully")
+                    .data(response.block())
+                    .build();
+
+            return ResponseUtil.success(userResponse);
 
         } catch (Exception e) {
             LogHandler.log("An error occurred while fetching trips: %s", e);
