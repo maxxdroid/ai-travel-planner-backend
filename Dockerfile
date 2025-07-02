@@ -7,7 +7,7 @@ WORKDIR /app
 # Copy the JAR from the Maven target folder
 COPY target/backend-0.0.1-SNAPSHOT.jar app.jar
 
-# Expose UDP port (the tunnel port)
+#Expose Port 80880
 EXPOSE 8080
 
 # Command to run the Spring Boot UDP server
