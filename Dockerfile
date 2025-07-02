@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/backend-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose UDP port (the tunnel port)
-EXPOSE 8082
+EXPOSE 8080
 
 # Command to run the Spring Boot UDP server
 ENTRYPOINT ["java", "-jar", "app.jar"]
