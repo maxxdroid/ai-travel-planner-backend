@@ -45,6 +45,6 @@ jobs:
               --name tripguru-backend \
               --restart unless-stopped \
               -p 8080:8080 \
-              --env-file /home/${{ secrets.VPS_USER }}/tripguru.env \
+              --env-file /${{ secrets.VPS_USER }}/tripguru.env \
               ${{ secrets.DOCKER_USERNAME }}/tripguru-backend:latest
             docker logs --tail=20 tripguru-backend
