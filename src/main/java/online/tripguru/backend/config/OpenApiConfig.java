@@ -21,7 +21,8 @@ public class OpenApiConfig {
                                 "Backend for a personalized AI-powered travel assistant that helps users plan their trips end-to-end"))
                 .servers(
                         List.of(
-                                new Server().url("http://localhost:8080")
+                                new Server().url("http://localhost:8080/api/v1"),
+                                new Server().url("http://api.tripguru.online/api/v1")
                         )
                 );
 //                .addSecurityItem(new SecurityRequirement().addList(SECURITY_SCHEME_NAME))
