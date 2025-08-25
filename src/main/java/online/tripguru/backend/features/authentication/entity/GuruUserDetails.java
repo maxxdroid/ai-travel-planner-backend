@@ -16,7 +16,6 @@ public class GuruUserDetails implements UserDetails {
     @Getter
     private final String email;
 
-
     public GuruUserDetails (GuruUser user) {
         this.id = user.getId();
         this.email = user.getEmail();
