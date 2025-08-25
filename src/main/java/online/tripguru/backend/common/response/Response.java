@@ -1,4 +1,4 @@
-package online.tripguru.backend.commons.response;
+package online.tripguru.backend.common.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;

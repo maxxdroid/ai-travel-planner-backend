@@ -1,7 +1,7 @@
-package online.tripguru.backend.commons.util;
+package online.tripguru.backend.common.util;
 
 import lombok.RequiredArgsConstructor;
-import online.tripguru.backend.commons.response.Response;
+import online.tripguru.backend.common.response.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,7 @@
-package online.tripguru.backend.commons.logging;
+package online.tripguru.backend.common.logs;
 
 import lombok.extern.slf4j.Slf4j;
+import online.tripguru.backend.common.exception.ApiException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,6 +14,10 @@ public class LogHandler {
 
     public static void log(String message, Throwable throwable) {
         log.error(message, throwable);
+    }
+
+    public static void log(ApiException ex) {
+        log.error(ex.getMessage(), ex.getCause());
     }
 
     public static void log(Throwable throwable) {
