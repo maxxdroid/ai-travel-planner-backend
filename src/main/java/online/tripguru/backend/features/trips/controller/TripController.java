@@ -1,7 +1,7 @@
 package online.tripguru.backend.features.trips.controller;
 
 import lombok.RequiredArgsConstructor;
-import online.tripguru.backend.commons.response.Response;
+import online.tripguru.backend.common.response.Response;
 import online.tripguru.backend.features.trips.dto.request.TripsRequest;
 import online.tripguru.backend.features.trips.service.TripService;
 import org.springframework.http.ResponseEntity;

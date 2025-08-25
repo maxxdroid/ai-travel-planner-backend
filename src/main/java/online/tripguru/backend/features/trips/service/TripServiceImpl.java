@@ -2,9 +2,9 @@ package online.tripguru.backend.features.trips.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import online.tripguru.backend.commons.logging.LogHandler;
-import online.tripguru.backend.commons.response.Response;
-import online.tripguru.backend.commons.util.ResponseUtil;
+import online.tripguru.backend.common.logs.LogHandler;
+import online.tripguru.backend.common.response.Response;
+import online.tripguru.backend.common.util.ResponseUtil;
 import online.tripguru.backend.features.trips.dto.request.TripsRequest;
 import online.tripguru.backend.features.trips.dto.response.TripsResponse;
 import org.springframework.beans.factory.annotation.Value;
