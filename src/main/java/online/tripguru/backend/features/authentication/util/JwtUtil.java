@@ -7,10 +7,12 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import online.tripguru.backend.common.exception.AuthExceptions;
 import online.tripguru.backend.features.authentication.entity.GuruUserDetails;
+import online.tripguru.backend.user.entity.GuruUser;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -46,6 +48,11 @@ public class JwtUtil {
             throw new AuthExceptions.InvalidTokenException();
         }
 
+    }
+
+    public String generateToken(GuruUser user) {
+        GuruUserDetails guruUserDetails = new GuruUserDetails(user);
+        return generateToken(new HashMap<>(), guruUserDetails);
     }
 
 

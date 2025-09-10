@@ -26,7 +26,7 @@ public class SecurityConfig {
     private final AuthenticationProvider authenticationProvider;
 
     private static final String[] WHITE_LIST_URL = {
-            "/api/v1/auth/**",
+            "/auth/**",
             "/v2/api-docs",
             "/v3/api-docs",
             "/v3/api-docs/**",
@@ -34,7 +34,6 @@ public class SecurityConfig {
             "/swagger-resources/*",
             "/swagger-ui/**",
             "/swagger-ui.html",
-            "/api/v1/course/**"
     };
 
     @Bean
