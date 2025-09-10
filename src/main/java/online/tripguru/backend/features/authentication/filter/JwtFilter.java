@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import online.tripguru.backend.features.authentication.entity.GuruUserDetails;
 import online.tripguru.backend.features.authentication.service.main.GuruUserDetailsImpl;
 import online.tripguru.backend.features.authentication.util.JwtUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
