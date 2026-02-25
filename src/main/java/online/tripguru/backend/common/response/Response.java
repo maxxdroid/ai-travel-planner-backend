@@ -1,4 +1,4 @@
-package online.tripguru.backend.commons.response;
+package online.tripguru.backend.common.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
@@ -11,6 +11,7 @@ import lombok.*;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Response <T> {
     private int status;
+    private String token;
     private String message;
     private T data;
     private int total;

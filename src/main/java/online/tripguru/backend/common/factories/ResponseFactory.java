@@ -1,14 +1,14 @@
-package online.tripguru.backend.commons.util;
+package online.tripguru.backend.common.factories;
 
 import lombok.RequiredArgsConstructor;
-import online.tripguru.backend.commons.response.Response;
+import online.tripguru.backend.common.response.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ResponseUtil {
+public class ResponseFactory {
 
     public static <T> ResponseEntity<Response<T>> success(T data) {
         return ResponseEntity.ok(Response.<T>builder()
@@ -70,12 +70,27 @@ public class ResponseUtil {
                         .build());
     }
 
+    public static Response<?> tokenResponse(String token) {
+        return Response.builder()
+                .status(200)
+                .token(token)
+                .message("Login Successful")
+                .build();
+    }
+
     public static ResponseEntity<Response<?>> forbidden(String message) {
         return ResponseEntity.status(HttpStatus.FORBIDDEN)
                 .body(Response.builder()
                         .status(HttpStatus.FORBIDDEN.value())
                         .message(message)
                         .build());
+    }
+
+    public static <T> Response<T> creationsSuccess() {
+        return Response.<T>builder()
+                .status(201)
+                .message("Success")
+                .build();
     }
 
 }
