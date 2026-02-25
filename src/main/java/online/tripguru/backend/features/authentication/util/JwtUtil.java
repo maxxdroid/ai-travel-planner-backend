@@ -55,6 +55,10 @@ public class JwtUtil {
         return generateToken(new HashMap<>(), guruUserDetails);
     }
 
+    public String generateToken(GuruUserDetails user) {
+        return generateToken(new HashMap<>(), user);
+    }
+
 
     public Claims extractClaims(String token) {
         return Jwts
