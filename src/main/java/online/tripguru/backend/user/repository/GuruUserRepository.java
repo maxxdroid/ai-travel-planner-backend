@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface GuruUserRepository extends MongoRepository<GuruUser, String> {
     Optional<GuruUser> findByEmail(String email);
+    boolean existsByEmail(String email);
 }
