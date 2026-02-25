@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import online.tripguru.backend.common.logs.LogHandler;
 import online.tripguru.backend.common.response.Response;
-import online.tripguru.backend.common.util.ResponseUtil;
+import online.tripguru.backend.common.factories.ResponseFactory;
 import online.tripguru.backend.features.trips.dto.request.TripsRequest;
 import online.tripguru.backend.features.trips.dto.response.TripsResponse;
 import org.springframework.beans.factory.annotation.Value;
@@ -77,11 +77,11 @@ public class TripServiceImpl implements TripService{
                     .data(response.block())
                     .build();
 
-            return ResponseUtil.success(userResponse);
+            return ResponseFactory.success(userResponse);
 
         } catch (Exception e) {
             LogHandler.log("An error occurred while fetching trips: %s", e);
-            return ResponseUtil.serverError("An error occurred while fetching trips");
+            return ResponseFactory.serverError("An error occurred while fetching trips");
         }
     }
 
