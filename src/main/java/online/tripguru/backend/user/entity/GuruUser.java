@@ -1,14 +1,16 @@
 package online.tripguru.backend.user.entity;
 
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
-
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @ToString
+@Builder
+@AllArgsConstructor
 @EqualsAndHashCode
 @NoArgsConstructor
 @Document()
@@ -20,7 +22,8 @@ public class GuruUser {
     private String username;
     private String profileUrl;
     private String phone;
-    private String refreshToken; // encrypt this at rest
-    private Instant createdAt;
-    private Instant updatedAt;
+    private String password;
+    private String refreshToken; //TODO: encrypt this at rest
+    @CreatedDate
+    private LocalDateTime createdAt;
 }
