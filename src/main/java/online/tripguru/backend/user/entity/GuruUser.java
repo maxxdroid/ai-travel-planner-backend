@@ -26,4 +26,5 @@ public class GuruUser {
     private String refreshToken; //TODO: encrypt this at rest
     @CreatedDate
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }
