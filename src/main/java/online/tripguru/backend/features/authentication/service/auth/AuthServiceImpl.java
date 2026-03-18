@@ -7,9 +7,9 @@ import online.tripguru.backend.common.util.GuruUserUtil;
 import online.tripguru.backend.features.authentication.dto.request.LoginRequest;
 import online.tripguru.backend.features.authentication.dto.request.SignUpRequest;
 import online.tripguru.backend.features.authentication.entity.GuruUserDetails;
+import online.tripguru.backend.features.authentication.service.main.GuruUserDetailsImpl;
 import online.tripguru.backend.features.authentication.util.JwtUtil;
 import online.tripguru.backend.user.entity.GuruUser;
-import online.tripguru.backend.user.repository.GuruUserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,6 +27,7 @@ public class AuthServiceImpl implements AuthService{
     private final JwtUtil jwtUtil;
     private final GuruUserUtil guruUserUtil;
     private final PasswordEncoder passwordEncoder;
+    private final GuruUserDetailsImpl guruUserDetails;
 
     @Override
     public ResponseEntity<Response<?>> login(LoginRequest request) {
@@ -59,9 +60,14 @@ public class AuthServiceImpl implements AuthService{
                     .phone(signUpRequest.phoneNumber())
                     .build();
 
-            guruUserUtil.saveGuruUser(guruUser);
+            GuruUser savedGuruUser = guruUserUtil.saveGuruUser(guruUser);
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(ResponseFactory.creationsSuccess());
+            GuruUserDetails userDetails =
+                    (GuruUserDetails) guruUserDetails.loadUserByUsername(savedGuruUser.getEmail());
+
+            String jwt = jwtUtil.generateToken(userDetails);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(ResponseFactory.creationsSuccess(jwt));
 
         } catch (Exception e) {
             throw new RuntimeException(e);

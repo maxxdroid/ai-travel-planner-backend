@@ -1,10 +1,10 @@
 package online.tripguru.backend.features.authentication.util;
 
-import com.google.api.client.util.Value;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import online.tripguru.backend.common.exception.AuthExceptions;
 import online.tripguru.backend.features.authentication.entity.GuruUserDetails;
 import online.tripguru.backend.user.entity.GuruUser;
@@ -30,7 +30,7 @@ public class JwtUtil {
     private String generateToken(Map<String, Object> claims, GuruUserDetails user) {
 
         claims.put("id", user.getId());
-        claims.put("email", user.getEmail());
+        claims.put("name", user.getFullName());
 
         try {
 

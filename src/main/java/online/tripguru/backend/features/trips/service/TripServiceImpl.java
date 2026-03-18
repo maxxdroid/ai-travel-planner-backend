@@ -7,6 +7,7 @@ import online.tripguru.backend.common.response.Response;
 import online.tripguru.backend.common.factories.ResponseFactory;
 import online.tripguru.backend.features.trips.dto.request.TripsRequest;
 import online.tripguru.backend.features.trips.dto.response.TripsResponse;
+import online.tripguru.backend.features.trips.entity.Trip;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-public class TripServiceImpl implements TripService{
+public class TripServiceImpl {
 
     @Value("${openai.api.key}")
     private String openAiApiKey;
@@ -28,7 +29,7 @@ public class TripServiceImpl implements TripService{
 
     private final WebClient webClient;
 
-    @Override
+//    @Override
     public ResponseEntity<Response<?>> getTrips(TripsRequest request) {
 
         try {
@@ -143,5 +144,4 @@ public class TripServiceImpl implements TripService{
                 destination, preferences, destination
         );
     }
-
 }

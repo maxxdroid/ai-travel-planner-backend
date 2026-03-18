@@ -2,9 +2,11 @@ package online.tripguru.backend.features.trips.service;
 
 import online.tripguru.backend.common.response.Response;
 import online.tripguru.backend.features.trips.dto.request.TripsRequest;
+import online.tripguru.backend.features.trips.entity.Trip;
 import org.springframework.http.ResponseEntity;
 
-public interface TripService extends GuruService {
+public interface GuruService {
 
-    ResponseEntity<Response<?>> getTrips(TripsRequest request);
+    ResponseEntity<Response<Trip>> create (TripsRequest tr);
+
 }

@@ -34,7 +34,6 @@ public class ResponseFactory {
                 .status(HttpStatus.OK.value())
                 .message("Success")
                 .data(data)
-                .total(total)
                 .build());
     }
 
@@ -89,6 +88,14 @@ public class ResponseFactory {
     public static <T> Response<T> creationsSuccess() {
         return Response.<T>builder()
                 .status(201)
+                .message("Success")
+                .build();
+    }
+
+    public static <T> Response<T> creationsSuccess(String token) {
+        return Response.<T>builder()
+                .status(201)
+                .token(token)
                 .message("Success")
                 .build();
     }

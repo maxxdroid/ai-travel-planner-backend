@@ -16,9 +16,16 @@ public class GuruUserDetails implements UserDetails {
     @Getter
     private final String email;
 
+    @Getter
+    private final String fullName;
+
+    private final String password;
+
     public GuruUserDetails (GuruUser user) {
         this.id = user.getId();
         this.email = user.getEmail();
+        this.fullName = user.getName();
+        this.password = user.getPassword();
     }
 
     @Override
@@ -28,7 +35,7 @@ public class GuruUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return "";
+        return password;
     }
 
     /// Note: Using email as the unique field and main identifier
