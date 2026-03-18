@@ -9,6 +9,7 @@ import online.tripguru.backend.features.authentication.service.auth.AuthService;
 import online.tripguru.backend.features.authentication.service.auth.GoogleOath;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,13 +22,13 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("login")
-    ResponseEntity<Response<?>> login(LoginRequest loginRequest) {
+    ResponseEntity<Response<?>> login(@RequestBody LoginRequest loginRequest) {
         return authService.login(loginRequest);
     }
 
     @PostMapping("signup")
-    ResponseEntity<Response<?>> signup(SignUpRequest signUpRequest) {
-        return null;
+    ResponseEntity<Response<?>> signup(@RequestBody SignUpRequest signUpRequest) {
+        return authService.signup(signUpRequest);
     }
 
     @PostMapping("login/google")
