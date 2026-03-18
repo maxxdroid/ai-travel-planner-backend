@@ -14,5 +14,4 @@ public class Response <T> {
     private String token;
     private String message;
     private T data;
-    private int total;
 }
