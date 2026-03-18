@@ -2,6 +2,8 @@ package online.tripguru.backend.features.trips.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import online.tripguru.backend.common.factories.ResponseFactory;
+import online.tripguru.backend.common.response.Response;
 import online.tripguru.backend.features.trips.dto.request.TripsRequest;
 import online.tripguru.backend.features.trips.dto.response.AiActivity;
 import online.tripguru.backend.features.trips.dto.response.AiLocation;
@@ -9,6 +11,7 @@ import online.tripguru.backend.features.trips.dto.response.AiStay;
 import online.tripguru.backend.features.trips.dto.response.AiTripResponse;
 import online.tripguru.backend.features.trips.entity.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -33,15 +36,26 @@ public class GuruServiceImpl implements GuruService{
 
     private final WebClient webClient;
 
+    TripGuruUser guruUser =  TripGuruUser
+            .builder()
+            .role(TripRole.ADMIN)
+            .fullName("Maxwell Antwi")
+            .id("asd-gfhd-kilsd-op-ds")
+            .build();
+
 
     public Trip generateTrip(TripsRequest request, TripGuruUser planner) {
 
+        // Build prompt
         String prompt = buildPrompt(request);
 
+        // Call OpenAI using the fixed client
         String aiJson = openAiClient.generateStructuredItinerary(prompt);
 
+        // Parse JSON into your AiTripResponse record
         AiTripResponse response = parse(aiJson);
 
+        // Map to Trip entity
         return mapToEntity(response, request, planner);
     }
 
@@ -191,5 +205,13 @@ public class GuruServiceImpl implements GuruService{
                 .longitude(l.longitude())
                 .address(l.address())
                 .build();
+    }
+
+    @Override
+    public ResponseEntity<Response<Trip>> create(TripsRequest tr) {
+
+        Trip trip = generateTrip(tr, guruUser);
+
+        return ResponseFactory.success(trip);
     }
 }
