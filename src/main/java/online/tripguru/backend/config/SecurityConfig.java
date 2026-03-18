@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         authRequest ->
                                 authRequest.requestMatchers(WHITE_LIST_URL).permitAll()
-                                        .anyRequest().authenticated()
+                                        .anyRequest().permitAll()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
