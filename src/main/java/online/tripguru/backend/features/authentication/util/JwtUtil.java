@@ -27,6 +27,10 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
+    private SecretKey getKey() {
+        return Keys.hmacShaKeyFor(Decoders.BASE64.decode(authKey));
+    }
+
     private String generateToken(Map<String, Object> claims, GuruUserDetails user) {
 
         claims.put("id", user.getId());
@@ -48,6 +52,37 @@ public class JwtUtil {
             throw new AuthExceptions.InvalidTokenException();
         }
 
+    }
+
+    public String generateAccessToken(GuruUserDetails user) {
+
+        return Jwts.builder()
+                .subject(user.getEmail())
+                .claim("id", user.getId())
+                .claim("type", "access")
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + 1000L * 60 * 15))
+                .signWith(getKey())
+                .compact();
+    }
+
+    public String generateRefreshToken(GuruUserDetails user) {
+
+        return Jwts.builder()
+                .subject(user.getEmail())
+                .claim("type", "refresh")
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + 1000L * 60 * 60 * 24 * 30))
+                .signWith(getKey())
+                .compact();
+    }
+
+    public String extractEmail(String token) {
+        return extractClaims(token).getSubject();
+    }
+
+    public String extractType(String token) {
+        return extractClaims(token).get("type", String.class);
     }
 
     public String generateToken(GuruUser user) {
