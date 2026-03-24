@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 @RequiredArgsConstructor
 public class ResponseFactory {
@@ -77,6 +79,14 @@ public class ResponseFactory {
                 .build();
     }
 
+    public static Response<?> tokenResponse(Map<String, String> token) {
+        return Response.builder()
+                .status(200)
+                .data(token)
+                .message("Login Successful")
+                .build();
+    }
+
     public static ResponseEntity<Response<?>> forbidden(String message) {
         return ResponseEntity.status(HttpStatus.FORBIDDEN)
                 .body(Response.builder()
@@ -96,6 +106,14 @@ public class ResponseFactory {
         return Response.<T>builder()
                 .status(201)
                 .token(token)
+                .message("Success")
+                .build();
+    }
+
+    public static <T> Response<T> creationsSuccess(T token) {
+        return Response.<T>builder()
+                .status(201)
+                .data(token)
                 .message("Success")
                 .build();
     }
